@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/santoshpavan/fitness-tracker.svg?branch=master)](https://travis-ci.com/santoshpavan/fitness-tracker)
+
 # FitnessTracker
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
