@@ -16,8 +16,8 @@ export class SignupComponent implements OnInit {
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
+  // Template Driven Form
   onSubmit(form: NgForm) {
-    console.log("hello");
     console.log(form);
   }
 
