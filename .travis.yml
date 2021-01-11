@@ -1,3 +1,4 @@
+sudo: required
 language: node_js
 node_js:
   - "10.19.0"
@@ -6,6 +7,8 @@ branches:
     - master
 before_script:
   - npm install -g @angular/cli
+  - npm install @angular/flex-layout --save
+  - ng add @angular/material
 script:
   - npm install
   - npm run build
