@@ -1,8 +1,5 @@
-<p>
-    hello
-</p>
 <section class="signup-form">
-    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (onSubmit)="onSubmit(f)">
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
         <mat-form-field>
             <input 
                 type="email" 
@@ -34,7 +31,7 @@
         <mat-form-field>
             <input 
                 matInput 
-                placeholder="Birthdate" 
+                placeholder="Birthdate (mm/dd/yyyy)" 
                 [matDatepicker]="picker"
                 [max]="maxDate"
                 ngModel
