@@ -3,11 +3,8 @@
         <mat-card-title fxLayoutAlign="center">Workout!</mat-card-title>
         <mat-card-content fxLayoutAlign="center">
             <mat-select placeholder="Exercise">
-                <mat-option values="crunches">
-                    Crunches
-                </mat-option>
-                <mat-option values="burpees">
-                    Burpees
+                <mat-option *ngFor="let exercise of exercises" [values]="exercise.id">
+                    {{exercise.name}}
                 </mat-option>
             </mat-select>
         </mat-card-content>
