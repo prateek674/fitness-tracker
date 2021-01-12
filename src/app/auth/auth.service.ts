@@ -1,8 +1,11 @@
+import { Subject }from 'rxjs';
+
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
 
 export class AuthService {
     private user: User;
+    authChange = new Subject<boolean>();
 
     registerUser(authData: AuthData) {
         this.user = {
@@ -16,10 +19,13 @@ export class AuthService {
             email: authData.email,
             userId: Math.round(Math.random() * 10000).toString()
         };
+
+        this.authChange.next(true);
     }
 
     logout(authData: AuthData) {
         this.user = null;
+        this.authChange.next(false);
     }
 
     getUser() {
