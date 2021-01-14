@@ -11,7 +11,7 @@ import { TrainingService } from '../training.service';
   styleUrls: ['./past-training.component.css']
 })
 export class PastTrainingComponent implements OnInit, AfterViewInit {
-  displayedColumsn = ['date', 'name', 'duration', 'calories', 'state'];
+  displayedColumns = ['date', 'name', 'duration', 'calories', 'state'];
   // MatTableDataSource always expects an array of data coming in.
   // So, expecting Exercise[] but we don't have to mention that because of MatTableDataSource
   dataSource = new MatTableDataSource<Exercise>();
