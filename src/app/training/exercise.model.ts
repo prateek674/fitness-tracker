@@ -4,7 +4,7 @@ export interface Exercise {
     duration: number;
     calories: number;
     // ? means optional
-    data?: Date;
+    date?: Date;
     // state has any of these three values
     state?: 'completed' | 'cancelled' | null;
 }
