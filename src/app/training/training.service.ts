@@ -1,3 +1,4 @@
+import { Subject } from "rxjs";
 import { Exercise } from "./exercise.model";
 
 export class TrainingService {
@@ -8,6 +9,7 @@ export class TrainingService {
         { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 }
     ];
     private runningExercise: Exercise;
+    exerciseChanged = new Subject<Exercise>();
 
     getAvailableExercises() {
         // slice gives a copy of the array
@@ -16,5 +18,6 @@ export class TrainingService {
 
     startExercise(selectedId: string) {
         this.runningExercise = this.availableExercises.find(ex => ex.id === selectedId);
+        this.exerciseChanged.next({ ...this.runningExercise});
     }
 }
