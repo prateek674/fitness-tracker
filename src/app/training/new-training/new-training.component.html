@@ -5,7 +5,7 @@
             <mat-card-content fxLayoutAlign="center">
                 <mat-select placeholder="Choose Exercise" ngModel name="exercise" required>
                     <!-- async pipe here automatically subscribes to an observable and extracts the data that the observable returns -->
-                    <mat-option *ngFor="let exercise of exercises | async" [values]="exercise.id">
+                    <mat-option *ngFor="let exercise of exercises" [values]="exercise.id">
                         {{exercise.name}}
                     </mat-option>
                 </mat-select>
