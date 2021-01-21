@@ -2,6 +2,7 @@ import { Subject, Subscription } from "rxjs";
 import { Exercise } from "./exercise.model";
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -36,8 +37,10 @@ export class TrainingService {
         .map(docArray => {
           return docArray.map(doc => {
             return {
-              id: doc.payload.doc.id,
-              ...doc.payload.doc.data()
+                id: doc.payload.doc.id,
+                name: doc.payload.doc.data()['name'],
+                duration: doc.payload.doc.data()['duration'],
+                calories: doc.payload.doc.data()['calories']
             };
           });
         }).subscribe((exercises: Exercise[]) => {
