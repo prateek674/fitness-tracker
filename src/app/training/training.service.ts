@@ -14,12 +14,17 @@ export class TrainingService {
     ];
     private runningExercise: Exercise;
     exerciseChanged = new Subject<Exercise>();
-    private exercises: Exercise[] = [];
     exercisesChanged = new Subject<Exercise[]>();
+    finishedExercisesChanged = new Subject<Exercise[]>();
 
     constructor(private db: AngularFirestore) { }
 
     fetchAvailableExercises() {
+        /* 
+        Even if this is called multiple times the subscription
+        only executes when there is a change. So, this subscription 
+        is not fetched everytime we go to new-training
+        */
         // valueChanges gives the Observable that we subscribe to
         // valueChanges strips off the metadata like the ID
         // this.exercises = this.db.collection('availableExercises').valueChanges();    
@@ -38,7 +43,7 @@ export class TrainingService {
             this.availableExercises = exercises;
             // emitting the exercises Changed list for the new-training.component.ts
             this.exercisesChanged.next([...this.availableExercises]);
-        })
+        });
     }
 
     startExercise(selectedId: string) {
@@ -47,7 +52,7 @@ export class TrainingService {
     }
 
     completeExercise() {
-        this.exercises.push({
+        this.addDatatoDatabase({
             ...this.runningExercise,
             date: new Date(),
             state: 'completed'
@@ -57,7 +62,7 @@ export class TrainingService {
     }
 
     cancelExercise(progress: number) {
-        this.exercises.push({
+        this.addDatatoDatabase({
             ...this.runningExercise,
             duration: this.runningExercise.duration * (progress / 100),
             calories: this.runningExercise.calories * (progress / 100),
@@ -72,7 +77,17 @@ export class TrainingService {
         return { ...this.runningExercise };
     }
     
-    getExercises() {
-        return this.exercises.slice();
+    fetchExercises() {
+        // return this.exercises.slice();
+        this.db.collection('finishedExercises')
+            .valueChanges()
+            .subscribe((exercises: Exercise[]) => {
+                // emitting this
+                this.finishedExercisesChanged.next(exercises);
+            });
+    }
+
+    private addDatatoDatabase(exercise: Exercise) {
+        this.db.collection('finishedExercises').add(exercise);
     }
 }
