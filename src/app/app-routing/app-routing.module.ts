@@ -7,7 +7,8 @@ import { AuthGuard } from '../auth/auth.guard';
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   // loadChildren used for lazy loading; omit .ts extension
-  { path: 'training', loadChildren: '../training/training-module#TrainingModule' }
+  // canLoad ensures training load only after successful auth
+  { path: 'training', loadChildren: '../training/training-module#TrainingModule', canLoad: [AuthGuard] }
 ];
 
 @NgModule({

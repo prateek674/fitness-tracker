@@ -6,7 +6,7 @@ import { TrainingComponent } from "./training.component";
 const routes: Routes = [
   // canActivate: AuthGuard allows to impl the route protection
   // path is empty as lazy loading from app-routing.module.ts
-  { path: '', component: TrainingComponent, canActivate: [AuthGuard] }
+  { path: '', component: TrainingComponent }
 ];
 
 @NgModule({
