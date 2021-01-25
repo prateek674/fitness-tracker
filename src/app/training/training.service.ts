@@ -50,6 +50,10 @@ export class TrainingService {
             this.availableExercises = exercises;
             // emitting the exercises Changed list for the new-training.component.ts
             this.exercisesChanged.next([...this.availableExercises]);
+        }, error => {
+            this.uiService.loadingStateChanged.next(false);
+            this.uiService.showSnackBar('Fetching Exercises Failed. Try Again.', null, 3000);
+            this.exerciseChanged.next(null);
         }));
     }
 
