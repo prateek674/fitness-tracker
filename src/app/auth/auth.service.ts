@@ -5,6 +5,7 @@ import { AuthData } from './auth-data.model';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { TrainingService } from '../training/training.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 // Injectable decorator is used when another service is used within a service
 @Injectable()
@@ -15,7 +16,8 @@ export class AuthService {
     constructor(
         private router: Router, 
         private afAuth: AngularFireAuth, 
-        private trainingService: TrainingService
+        private trainingService: TrainingService,
+        private snackbar: MatSnackBar
     ) {}
 
     initAuthListener() {
@@ -42,7 +44,11 @@ export class AuthService {
             authData.password
         ).then(result => {
         }).catch(error => {
-            console.log(error);
+            // console.log(error);
+            // pop-up (snackbar) error display
+            this.snackbar.open(error.message, null, {
+                duration: 3000
+            });
         });
     }
 
@@ -52,7 +58,10 @@ export class AuthService {
             authData.password
         ).then(result => {
         }).catch(error => {
-            console.log(error);
+            // console.log(error);
+            this.snackbar.open(error.message, null, {
+                duration: 3000
+            });
         });
     }
 
