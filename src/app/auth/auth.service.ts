@@ -1,11 +1,9 @@
 import { Subject }from 'rxjs';
 import { Injectable } from '@angular/core';
-
 import { AuthData } from './auth-data.model';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { TrainingService } from '../training/training.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { UIService } from '../shared/ui.service';
 
 // Injectable decorator is used when another service is used within a service
@@ -18,7 +16,6 @@ export class AuthService {
         private router: Router, 
         private afAuth: AngularFireAuth, 
         private trainingService: TrainingService,
-        private snackbar: MatSnackBar,
         private uiService: UIService
     ) {}
 
@@ -54,9 +51,7 @@ export class AuthService {
             // set uiService false to indicate stopped loading
             this.uiService.loadingStateChanged.next(false);
             // pop-up (snackbar) error display
-            this.snackbar.open(error.message, null, {
-                duration: 3000
-            });
+            this.uiService.showSnackBar(error.message, null, 3000);
         });
     }
 
@@ -73,9 +68,7 @@ export class AuthService {
             // console.log(error);
             // set uiService false to indicate stopped loading
             this.uiService.loadingStateChanged.next(false);
-            this.snackbar.open(error.message, null, {
-                duration: 3000
-            });
+            this.uiService.showSnackBar(error.message, null, 3000);
         });
     }
 
