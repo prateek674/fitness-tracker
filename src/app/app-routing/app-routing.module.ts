@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', component: WelcomeComponent },
   // loadChildren used for lazy loading; omit .ts extension
   // canLoad ensures training load only after successful auth
-  { path: 'training', loadChildren: '../training/training-module#TrainingModule', canLoad: [AuthGuard] }
+  { path: 'training', loadChildren: '../training/training.module#TrainingModule', canLoad: [AuthGuard] }
 ];
 
 @NgModule({

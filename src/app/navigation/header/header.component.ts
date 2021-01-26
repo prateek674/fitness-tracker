@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Output allows listening from outside
   // EventEmitter allows to emit to outside
   // void because we want void type when nothing is there
-  @Output() sidenavToggle = new EventEmitter();
+  @Output() sidenavToggle = new EventEmitter<void>();
   isAuth = false;
   authSubscription: Subscription;
 
