@@ -1,7 +1,7 @@
 import { env_consts } from "./env-consts";
 
 export const environment = {
-  production: true,
+  production: false,
   firebase: {
     apiKey: env_consts.apiKey,
     authDomain: env_consts.authDomain,

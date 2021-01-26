@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { Exercise } from '../exercise.model';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { TrainingService } from '../training.service';
-import { UIService } from "../../shared/ui.service";
+import { Exercise } from '../exercise.model';
+import { UIService } from '../../shared/ui.service';
 
 @Component({
   selector: 'app-new-training',
@@ -11,23 +13,24 @@ import { UIService } from "../../shared/ui.service";
   styleUrls: ['./new-training.component.css']
 })
 export class NewTrainingComponent implements OnInit, OnDestroy {
-  // @Output() trainingStart = new EventEmitter<void>();
-  // exercises: Exercise[] = [];
   exercises: Exercise[];
-  private exerciseSubscription: Subscription;
   isLoading = true;
+  private exerciseSubscription: Subscription;
   private loadingSubscription: Subscription;
 
-  constructor(private trainingService: TrainingService, private uiService: UIService) { }
+  constructor(private trainingService: TrainingService, private uiService: UIService) {}
 
-  ngOnInit(): void {
-    this.loadingSubscription = this.uiService.loadingStateChanged.subscribe(isLoading => {
-      this.isLoading = isLoading;
-    });
-    // this.exercises = this.trainingService.getAvailableExercises();
-    this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercises => {
-      this.exercises = exercises;
-    });
+  ngOnInit() {
+    this.loadingSubscription = this.uiService.loadingStateChanged.subscribe(
+      isLoading => {
+        this.isLoading = isLoading;
+      }
+    );
+    this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(
+      exercises => {
+        this.exercises = exercises;
+      }
+    );
     this.fetchExercises();
   }
 
@@ -36,7 +39,6 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
   }
 
   onStartTraining(form: NgForm) {
-    // this.trainingStart.emit();
     this.trainingService.startExercise(form.value.exercise);
   }
 

@@ -1,16 +1,14 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { AuthGuard } from "../auth/auth.guard";
-import { TrainingComponent } from "./training.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { TrainingComponent } from './training.component';
 
 const routes: Routes = [
-  // canActivate: AuthGuard allows to impl the route protection
-  // path is empty as lazy loading from app-routing.module.ts
   { path: '', component: TrainingComponent }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class TrainingRoutingModule {}
