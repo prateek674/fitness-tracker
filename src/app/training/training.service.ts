@@ -3,13 +3,14 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs';
 import 'rxjs/add/operator/map';
+import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 
 import { Exercise } from './exercise.model';
 import { UIService } from '../shared/ui.service';
 import * as fromTraining from './training.reducer';
 import * as TrainingActions from './training.actions';
 import * as UI from '../shared/ui.actions';
-import { Store } from '@ngrx/store';
 
 @Injectable()
 export class TrainingService {
@@ -56,23 +57,27 @@ export class TrainingService {
   }
 
   completeExercise() {
-    this.addDataToDatabase({
-      ...this.runningExercise,
-      date: new Date(),
-      state: 'completed'
-    });
-    this.store.dispatch(new TrainingActions.SetStopTraining());
+    this.store.select(fromTraining.getActiveExercise).pipe(take(1)).subscribe(ex => {
+      this.addDataToDatabase({
+        ...ex,
+        date: new Date(),
+        state: 'completed'
+      });
+      this.store.dispatch(new TrainingActions.SetStopTraining());
+    });    
   }
 
   cancelExercise(progress: number) {
-    this.addDataToDatabase({
-      ...this.runningExercise,
-      duration: this.runningExercise.duration * (progress / 100),
-      calories: this.runningExercise.calories * (progress / 100),
-      date: new Date(),
-      state: 'cancelled'
+    this.store.select(fromTraining.getActiveExercise).subscribe(ex => {
+      this.addDataToDatabase({
+        ...ex,
+        duration: ex.duration * (progress / 100),
+        calories: ex.calories * (progress / 100),
+        date: new Date(),
+        state: 'cancelled'
+      });
+      this.store.dispatch(new TrainingActions.SetStopTraining());
     });
-    this.store.dispatch(new TrainingActions.SetStopTraining());
   }
 
   getRunningExercise() {
