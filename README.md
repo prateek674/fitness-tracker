@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
 
+## Implementation
+As part of this project, the following was implemented-
+* Used Angular Materials for the UI components of the application.
+* Used FlexLayoutModule for the flex layout implementation in the signup and login form pages.
+* Used custom routes within the application using Routes and RouterModule for navigation.
+* Used FormsModule for template driven forms implementation for the signup form along with validations, hints and error prompts using mat-hint and mat-error. Bound the entered data using ngModel.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
