@@ -4,10 +4,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Implementation
 As part of this project, the following was implemented-
-* Used Angular Materials for the UI components of the application.
-* Used FlexLayoutModule for the flex layout implementation in the signup and login form pages.
-* Used custom routes within the application using Routes and RouterModule for navigation.
-* Used FormsModule for template driven forms implementation for the signup form along with validations, hints and error prompts using mat-hint and mat-error. Bound the entered data using ngModel.
+* Used **Angular Materials** for the UI components of the application.
+* Used **FlexLayoutModule** for the flex layout implementation in the signup and login form pages.
+* Used custom routes within the application using **Routes** and **RouterModule** for navigation.
+* Used **FormsModule** for **template driven forms** implementation for the signup form along with validations, hints and error prompts using mat-hint and mat-error. Bound the entered data using ngModel.
+* Used **MatSidenavModule** for the side navigation implementation.
+* Used **MatToolbarModule** for the toolbar implementation (comes with Flex). Used the flex layout properties to make the toolbar part of the **responsive** webpage design.
+* Used **EventEmitter** to listen to custom events between components.
+* Implemented tabs within a page using **MatTabsModule** for an intuitive web design.
+* Used **MatCardModule** to show the exercise options within cards.
+* Used **MatSelectModule** for drop down feature implementation for the selection of exercise options available.
+* Implemented a determinate progress spinner using **MatProgressSpinnerModule** to show the progress of the exercise of the user.
+* Implemented dialog prompt in a separate module with **@Inject** decorator with **MAT_DIALOG_DATA** to inject information from one component to another.
+* Used and handled **Observables** for the asynchronous sections of the application. 
 
 ## Development server
 
