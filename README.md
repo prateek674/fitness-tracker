@@ -16,7 +16,11 @@ As part of this project, the following was implemented-
 * Used **MatSelectModule** for drop down feature implementation for the selection of exercise options available.
 * Implemented a determinate progress spinner using **MatProgressSpinnerModule** to show the progress of the exercise of the user.
 * Implemented dialog prompt in a separate module with **@Inject** decorator with **MAT_DIALOG_DATA** to inject information from one component to another.
-* Used and handled **Observables** for the asynchronous sections of the application. 
+* Implemented routing **guard service** for protecting some routes from unauthenticated users, using CanActivate, ActivatedRouterSnapshot and RouterStateSnapshot.
+* Used MatTableModule to display the history of exercises performed by the user. Implemented **Pagination** (with MatPaginatorModule), **Sorting** (with MatSortModule) and **Filtering** (by accessing the DOM event) on that data. Made these updates in the AfterViewInit life cycle hook.
+* Used **Firebase** for the database with AngularFireModule and AngularFirestoreModule from Angularfire2 library, to connect the Angular application to the Firebase database.
+* Used **AngularFireAuth** for the authentication feature.
+* Used and handled **Observables** for the asynchronous sections of the application.
 
 ## Development server
 
