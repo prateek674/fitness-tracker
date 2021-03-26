@@ -21,6 +21,9 @@ As part of this project, the following was implemented-
 * Used **Firebase** for the database with AngularFireModule and AngularFirestoreModule from Angularfire2 library, to connect the Angular application to the Firebase database.
 * Used **AngularFireAuth** for the authentication feature.
 * Used and handled **Observables** for the asynchronous sections of the application.
+* Implemented **feature modules** for authentication and for training under the root module for a better modular approach.
+* Handled authentication of a user and the exercise state as **services** with them integrated into other components using **Dependency Injection**.
+* Implemented **lazy loading** feature for the training component.
 
 ## Development server
 
