@@ -27,14 +27,14 @@
     "@ngrx/store": "^19.0.1",
     "angularfire2": "^5.4.2",
     "core-js": "^3.40.0",
-    "firebase": "^11.2.0",
+    "firebase": "^11.10.0",
     "hammerjs": "^2.0.8",
     "rxjs": "^7.8.1",
     "rxjs-compat": "^6.6.7",
     "zone.js": "^0.15.0"
   },
   "devDependencies": {
-    "@angular/cli": "^19.1.5",
+    "@angular/cli": "^21.1.2",
     "@angular-devkit/build-angular": "~19.1.5",
     "@angular/compiler-cli": "^19.1.4",
     "@angular/language-service": "^19.1.4",
